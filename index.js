@@ -1,5 +1,5 @@
 
-import {api, sport} from './the-odds-api.js';
+import {api, request, sport} from './the-odds-api.js';
 import {dbfn} from './dbfunctions.js';
 
 api.debug = false;
@@ -7,8 +7,8 @@ api.debug = false;
 
 // request.odds(sport.nhl);
 
-// dbfn.listAll();
+dbfn.list();
 let dbkey = sport.nhl.dbkey;
-// dbfn.logSport(dbkey);
+// dbfn.logRow(dbkey);
 dbfn.logOdds(dbkey);
 

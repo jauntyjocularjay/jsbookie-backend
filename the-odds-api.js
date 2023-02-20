@@ -2,7 +2,6 @@ import fetch from 'node-fetch';
 import {dbfn} from './dbfunctions.js';
 
 const api = {
-  key: process.env['api_key'],
   debug: false,
   debug_url: '',
   base_url : 'https://api.the-odds-api.com',
@@ -56,14 +55,14 @@ const sport = {
 const request = {
   odds: (desiredSport) => {
     
-    let url = `${api.base_url}/v4/sports/${desiredSport.key}/odds/?apiKey=${api.key}&regions=${api.regions}`;
+    let url = `${api.base_url}/v4/sports/${desiredSport.key}/odds/?apiKey=${process.env['api_key']}&regions=${api.regions}`;
     request.dbkey = desiredSport.dbkey;
     
     fetch(url)
       .then((response) => response.json())
       .then((data) => { 
         dbfn.set(request.dbkey, data);
-        dbfn.log(request.dbkey);
+        dbfn.logRow(request.dbkey);
       });
 
     request.dbkey = '';

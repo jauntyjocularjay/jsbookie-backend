@@ -15,7 +15,7 @@ const dbfn = {
   
   logRow: (dbkey) => {
     db.get(dbkey)
-      .then((value) => {
+      .then( (value) => {
         console.log(`\n${dbkey} contains:\n`, value);
       });
   },
@@ -61,7 +61,9 @@ const dbfn = {
         console.log(`${dbkey} data logged.`);
       })
     
-  }
+  },
+
+  property: ''
 }
 
 export {dbfn};
