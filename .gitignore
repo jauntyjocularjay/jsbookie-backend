@@ -3,6 +3,7 @@
 
 .replit
 .config
+.breakpoints
 package.json
 package-lock.json
 replit.nix
