@@ -16,7 +16,7 @@ const dbfn = {
   logRow: (dbkey) => {
     db.get(dbkey)
       .then((value) => {
-        console.log(`\n${dbkey} contains: \n`, value);
+        console.log(`\n${dbkey} contains:\n`, value);
       });
   },
 
