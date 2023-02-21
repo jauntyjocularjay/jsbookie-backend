@@ -9,7 +9,7 @@ const api = {
   oddsFormat: 'decimal'
 };
 
-const sport = {
+const sport = { // This is what gets passed in request.odds(desiredSport) as desiredSport
   ncaa: {
     dbkey: 'ncaa',
     key: 'americanfootball_ncaaf',
@@ -30,7 +30,7 @@ const sport = {
     key: 'basketball_nba',
     has_outrights: false
   },
-  nhl: {  // This is what gets passed in request.odds(desiredSport) as desiredSport
+  nhl: { 
     dbkey: 'nhl',
     key: 'icehockey_nhl',
     has_outrights: false
@@ -53,6 +53,14 @@ const sport = {
 };
 
 const request = {
+  allSports: (bool) => {
+
+  },
+
+  currentSports: () => {
+    request.allSports(false);
+  },
+  
   odds: (desiredSport) => {
     
     let url = `${api.base_url}/v4/sports/${desiredSport.key}/odds/?apiKey=${process.env['api_key']}&regions=${api.regions}`;
@@ -64,7 +72,7 @@ const request = {
         dbfn.set(request.dbkey, data);
         dbfn.logRow(request.dbkey);
       });
-
+    // Return request.dbkey to empty string.
     request.dbkey = '';
   },
   

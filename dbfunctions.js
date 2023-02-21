@@ -59,6 +59,7 @@ const dbfn = {
     db.set(dbkey, data)
       .then( () => {
         console.log(`${dbkey} data logged.`);
+        dbfn.logRow(dbkey);
       })
     
   },
