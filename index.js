@@ -7,6 +7,7 @@ api.debug = false;
 
 // request.odds(sport.nhl);
 
+// request.dbkey;
 dbfn.list();
 let dbkey = sport.nhl.dbkey;
 // dbfn.logRow(dbkey);
