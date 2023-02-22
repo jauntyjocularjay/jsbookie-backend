@@ -10,6 +10,6 @@ import {dbfn} from './jsbookieDBFunctions.js';
 
 // request.dbkey;
 // dbfn.list();
-let dbkey = sport.nhl.dbkey;
-dbfn.logRecord(dbkey);
-dbfn.logOdds(dbkey);
+// let dbkey = sport.nhl.dbkey;
+// dbfn.logRecord(dbkey);
+// dbfn.logOdds(dbkey);

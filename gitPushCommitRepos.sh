@@ -3,9 +3,11 @@
 cd ReplitDBFunctions
 
 # Commit changes to git
-git commit -m
+git commit -a -m ''
 
 # Push changes to Git
-git push origin 20230222-jsBookie-backend
+git push origin 20230222-jsbookie-backend
 
-# Navigate to root
+# Navigate back to project root
+cd ..
+
