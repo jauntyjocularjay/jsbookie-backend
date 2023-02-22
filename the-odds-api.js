@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import {dbfn} from './dbfunctions.js';
+import {dbfn} from './jsbookieDBFunctions.js';
 
 const api = {
   debug: false,
@@ -53,17 +53,30 @@ const sport = { // This is what gets passed in request.odds(desiredSport) as des
 };
 
 const request = {
-  allSports: (bool) => {
+  sports(bool) {
+    const apikey = process.env['api_key'];
+    const url = `${api.base_url}/v4/sports/?apiKey=${apikey}&all=${bool}`;
+    bool ? request.dbkey = 'sports' : request.dbkey = 'currentSports';
+    console.log('bool:', bool, '\nurl:', url, '\nrequest.dbkey:', request.dbkey);
 
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => { dbfn.set(request.dbkey, data) });
+
+    request.reset()
+  },
+  
+  allSports: () => {
+    request.sports(true);
   },
 
   currentSports: () => {
-    request.allSports(false);
+    request.sports(false);
   },
   
   odds: (desiredSport) => {
-    
-    let url = `${api.base_url}/v4/sports/${desiredSport.key}/odds/?apiKey=${process.env['api_key']}&regions=${api.regions}`;
+    const apikey = process.env['api_key'];
+    const url = `${api.base_url}/v4/sports/${desiredSport.key}/odds/?apiKey=${apikey}&regions=${api.regions}`;
     request.dbkey = desiredSport.dbkey;
     
     fetch(url)
@@ -73,15 +86,22 @@ const request = {
         dbfn.logRow(request.dbkey);
       });
     // Return request.dbkey to empty string.
+    request.reset();
+  },
+
+  reset: () => {
+    // reset request.dbkey to empty string.
     request.dbkey = '';
+    console.log('dbkey reset');
+    return true;
   },
   
   dbkey: ''
-  
+    
 };
 
 export {
   api,
   request,
   sport
-};
+}
