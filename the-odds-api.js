@@ -57,7 +57,6 @@ const request = {
     const apikey = process.env['api_key'];
     const url = `${api.base_url}/v4/sports/?apiKey=${apikey}&all=${bool}`;
     bool ? request.dbkey = 'sports' : request.dbkey = 'currentSports';
-    console.log('bool:', bool, '\nurl:', url, '\nrequest.dbkey:', request.dbkey);
 
     fetch(url)
       .then((response) => response.json())
