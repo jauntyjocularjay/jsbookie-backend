@@ -53,7 +53,7 @@ const sport = { // This is what gets passed in request.odds(desiredSport) as des
 };
 
 const request = {
-  sports(bool) {
+  sports: (bool) => {
     const apikey = process.env['api_key'];
     const url = `${api.base_url}/v4/sports/?apiKey=${apikey}&all=${bool}`;
     bool ? request.dbkey = 'sports' : request.dbkey = 'currentSports';
@@ -80,10 +80,7 @@ const request = {
     
     fetch(url)
       .then((response) => response.json())
-      .then((data) => { 
-        dbfn.set(request.dbkey, data);
-        dbfn.logRow(request.dbkey);
-      });
+      .then((data) => { dbfn.set(request.dbkey, data) });
     // Return request.dbkey to empty string.
     request.reset();
   },
@@ -91,7 +88,7 @@ const request = {
   reset: () => {
     // reset request.dbkey to empty string.
     request.dbkey = '';
-    console.log('dbkey reset');
+    console.log('request.dbkey reset');
     return true;
   },
   
@@ -100,7 +97,6 @@ const request = {
 };
 
 export {
-  api,
   request,
   sport
 }

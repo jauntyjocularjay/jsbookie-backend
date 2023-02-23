@@ -1,5 +1,5 @@
 
-import dbfn from './ReplitDBFunctions/dbFunctions.js'
+import dbfn from './ReplitDBFunctions/ReplitDBFunctions.js'
 import Database from '@replit/database';
 const db = new Database();
 
