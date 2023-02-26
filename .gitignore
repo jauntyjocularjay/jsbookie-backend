@@ -8,4 +8,5 @@ package.json
 package-lock.json
 replit.nix
 
-.gitPushCommitRepos.sh
+.gitPushRepos.sh
+.gitMergeRepos.sh
