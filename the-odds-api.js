@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import {dbfn} from './dbfunctions.js';
+import {dbfn} from './jsbookieDBFunctions.js';
 
 const api = {
   debug: false,
@@ -9,7 +9,7 @@ const api = {
   oddsFormat: 'decimal'
 };
 
-const sport = {
+const sport = { // This is what gets passed in request.odds(desiredSport) as desiredSport
   ncaa: {
     dbkey: 'ncaa',
     key: 'americanfootball_ncaaf',
@@ -30,7 +30,7 @@ const sport = {
     key: 'basketball_nba',
     has_outrights: false
   },
-  nhl: {  // This is what gets passed in request.odds(desiredSport) as desiredSport
+  nhl: { 
     dbkey: 'nhl',
     key: 'icehockey_nhl',
     has_outrights: false
@@ -53,27 +53,50 @@ const sport = {
 };
 
 const request = {
+  sports: (bool) => {
+    const apikey = process.env['api_key'];
+    const url = `${api.base_url}/v4/sports/?apiKey=${apikey}&all=${bool}`;
+    bool ? request.dbkey = 'sports' : request.dbkey = 'currentSports';
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => { dbfn.setRecord(request.dbkey, data) });
+
+    request.reset()
+  },
+  
+  allSports: () => {
+    request.sports(true);
+  },
+
+  currentSports: () => {
+    request.sports(false);
+  },
+  
   odds: (desiredSport) => {
-    
-    let url = `${api.base_url}/v4/sports/${desiredSport.key}/odds/?apiKey=${process.env['api_key']}&regions=${api.regions}`;
+    const apikey = process.env['api_key'];
+    const url = `${api.base_url}/v4/sports/${desiredSport.key}/odds/?apiKey=${apikey}&regions=${api.regions}`;
     request.dbkey = desiredSport.dbkey;
     
     fetch(url)
       .then((response) => response.json())
-      .then((data) => { 
-        dbfn.set(request.dbkey, data);
-        dbfn.logRow(request.dbkey);
-      });
+      .then((data) => { dbfn.setRecord(request.dbkey, data) });
+    // Return request.dbkey to empty string.
+    request.reset();
+  },
 
+  reset: () => {
+    // reset request.dbkey to empty string.
     request.dbkey = '';
+    console.log('request.dbkey reset');
+    return true;
   },
   
   dbkey: ''
-  
+    
 };
 
 export {
-  api,
   request,
   sport
-};
+}
