@@ -60,7 +60,7 @@ const request = {
 
     fetch(url)
       .then((response) => response.json())
-      .then((data) => { dbfn.set(request.dbkey, data) });
+      .then((data) => { dbfn.setRecord(request.dbkey, data) });
 
     request.reset()
   },
@@ -80,7 +80,7 @@ const request = {
     
     fetch(url)
       .then((response) => response.json())
-      .then((data) => { dbfn.set(request.dbkey, data) });
+      .then((data) => { dbfn.setRecord(request.dbkey, data) });
     // Return request.dbkey to empty string.
     request.reset();
   },
