@@ -25,12 +25,10 @@ function Cycle(){
 }
 
 function Playground(){
-  const user = new User("George");
-  console.log('User:', user);
   // Code to assist writing
-  // request.odds(sport.nhl);
-  dbfn.logOdds(sport.nhl);
-  // dbfn.logRecord(sport.nhl.dbkey);
+
+  dbfn.logSports();
+  
 }
 
 export {Main};

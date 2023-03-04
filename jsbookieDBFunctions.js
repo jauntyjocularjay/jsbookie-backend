@@ -25,11 +25,31 @@ dbfn.logOdds = (sport) => {
     }); // games
 }
 
-dbfn.logSports = () => {
+dbfn.logSports = (activeOnly) => {
   /**
   @TODO finish logSports()
-  
   */
+  dbfn.activeOnly = activeOnly;
+  
+  db.get('sports')
+    .then( (sports) => {
+      let array = new Array();
+      if (dbfn.activeOnly) {
+        sports.foreach( (sport) => {
+          if (sport.active) {
+            array.push(sport);
+          }
+        }
+        return array;
+      } else {
+        return sports;
+      }
+    })
+    .then( (sports) => {
+      
+    });
+  
+  dbfn.activeOnly = false;
 }
 
 export {dbfn};
