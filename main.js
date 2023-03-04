@@ -1,11 +1,12 @@
 // Imports
 import {dbfn} from './jsbookieDBFunctions.js';
 import {sport, request} from './the-odds-api.js';
+import {Bet, User} from './Bet.js';
 
 // Duration parameters
 
-function main(isCycling){
-  // const day = 86400000; // 24 hours in milliseconds
+function Main(isCycling){
+  const day = 86400000; // 24 hours in milliseconds
   const interval = 30 * 1000;
 
   if(typeof isCycling != 'boolean'){
@@ -15,17 +16,21 @@ function main(isCycling){
   if(isCycling){
     setInterval( () => { cycle() }, interval )
   } else {
-    playground();
+    Playground();
   }
 }
 
-function cycle(){
+function Cycle(){
   // Cycling Code
 }
 
-function playground(){
+function Playground(){
+  const user = new User("George");
+  console.log('User:', user);
   // Code to assist writing
+  // request.odds(sport.nhl);
   dbfn.logOdds(sport.nhl);
+  // dbfn.logRecord(sport.nhl.dbkey);
 }
 
-export {main};
+export {Main};

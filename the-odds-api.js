@@ -2,8 +2,6 @@ import fetch from 'node-fetch';
 import {dbfn} from './jsbookieDBFunctions.js';
 
 const api = {
-  debug: false,
-  debug_url: '',
   base_url : 'https://api.the-odds-api.com',
   regions : 'us',
   oddsFormat: 'decimal'
