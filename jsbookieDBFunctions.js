@@ -1,7 +1,9 @@
 
-import dbfn from './ReplitDBFunctions/ReplitDBFunctions.js'
+import dbfn from './ReplitDBFunctions/ReplitDBFunctions.js';
+
 import Database from '@replit/database';
 const db = new Database();
+
 
 dbfn.logOdds = (sport) => {
   db.get(sport.dbkey)
@@ -24,7 +26,10 @@ dbfn.logOdds = (sport) => {
 }
 
 dbfn.logSports = () => {
+  /**
+  @TODO finish logSports()
   
+  */
 }
 
 export {dbfn};
