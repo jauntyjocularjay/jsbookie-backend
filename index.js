@@ -1,4 +1,4 @@
-import {Main} from './main.js';
+import {Main} from './Main.js';
 
 Main(false);
 

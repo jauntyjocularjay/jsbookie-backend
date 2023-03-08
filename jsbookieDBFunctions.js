@@ -25,31 +25,49 @@ dbfn.logOdds = (sport) => {
     }); // games
 }
 
+dbfn.activeOnly = false;
+
 dbfn.logSports = (activeOnly) => {
   /**
   @TODO finish logSports()
   */
+  console.log('activeOnly ===', activeOnly)
   dbfn.activeOnly = activeOnly;
+  console.log('dbfn.activeOnly ===', dbfn.activeOnly);
+  
   
   db.get('sports')
     .then( (sports) => {
-      let array = new Array();
+      console.log('entered then(sports)');
+      console.log('ActiveOnly ===', dbfn.activeOnly);
+      let activeSports = new Array();
       if (dbfn.activeOnly) {
-        sports.foreach( (sport) => {
+        sports.forEach( (sport) => {
+          console.log('Sport:\n', sport);
           if (sport.active) {
-            array.push(sport);
+            activeSports.push(sport);
           }
-        }
-        return array;
+        });
+        return activeSports;
       } else {
         return sports;
       }
     })
     .then( (sports) => {
-      
+      // console.log('Sports:', sports)
+      // 
     });
   
   dbfn.activeOnly = false;
 }
+
+dbfn.logAllSports = () => {
+  // dbfn.logSports(false);
+}
+
+dbfn.logActiveSports = () => {
+  dbfn.logSports(true);
+}
+  
 
 export {dbfn};
