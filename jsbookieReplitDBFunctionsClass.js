@@ -8,7 +8,7 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
 
   constructor(){
     super();
-    this.activeOnlyn = false;
+    this.activeOnly = false;
   }
 
   logOdds(sport){
@@ -57,7 +57,7 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
         // 
       });
     
-    this.activeOnlyfalse;
+    this.activeOnly = false;
   }
 
   logAllSports(){
