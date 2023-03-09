@@ -32,11 +32,8 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
   }
 
   logSports(activeOnly){
-    /**
-    @TODO finish logSports()
-    */
-    this.activeOnly = activeOnly;
-    
+
+    this.activeOnly = activeOnly;    
     
     db.get('sports')
       .then( (sports) => {
@@ -54,10 +51,9 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
       })
       .then( (sports) => {
         console.log('Sports:', sports)
-        // 
       });
     
-    this.activeOnly = false;
+    this.reset();
   }
 
   logAllSports(){
@@ -68,6 +64,11 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
     this.logSports(true);
   }
   
+  reset(){
+    super.reset();
+    this.activeOnly = false;
+  }
+
 }
 
 export {jsbookieReplitDBFunctions as default};

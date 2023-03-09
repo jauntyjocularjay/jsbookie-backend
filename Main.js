@@ -26,8 +26,7 @@ function Cycle() {
 
 function Playground() {
   // Code to assist writing
-
-  dbfn.logAllSports();
+  
 
 }
 

@@ -1,5 +1,7 @@
 import fetch from 'node-fetch';
-import {dbfn} from './jsbookieDBFunctions.js';
+import jsbookieReplitDBFunctions from './jsbookieReplitDBFunctions.js';
+
+const dbfn = new jsbookieReplitDBFunctions();
 
 const api = {
   base_url : 'https://api.the-odds-api.com',
