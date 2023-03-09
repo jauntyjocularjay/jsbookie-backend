@@ -1,5 +1,5 @@
 // Imports
-import jsbookieReplitDBFunctions from './jsbookieReplitDBFunctionsClass.js';
+import jsbookieReplitDBFunctions from './jsbookieReplitDBFunctions.js';
 import { sport, request } from './the-odds-api.js';
 import { Bet, User } from './Bet.js';
 
