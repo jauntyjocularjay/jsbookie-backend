@@ -26,7 +26,7 @@ function Cycle() {
 
 function Playground() {
   // Code to assist writing
-  
+  // const my_user = new User('jadedrakerider');
 
 }
 

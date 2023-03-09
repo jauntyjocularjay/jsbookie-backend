@@ -1,9 +1,11 @@
 
 class User {
 
-  this.user_id = 0;
+  #user_id = dbfn.getRecord('users').length - 1;
 
   constructor( name ){
+    this.constructor();
+    
     this.balance = {
       deposit: 0,
       winnings: 0
@@ -14,7 +16,7 @@ class User {
   }
 
   purchase(){
-    
+    // @TODO User.purchase()
     
     this.bet_count++;
 

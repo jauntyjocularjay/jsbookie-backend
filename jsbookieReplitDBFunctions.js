@@ -63,6 +63,10 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
   logActiveSports(){
     this.logSports(true);
   }
+
+  addUsers(){
+    // @TODO add users to database
+  }
   
   reset(){
     super.reset();
@@ -72,3 +76,4 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
 }
 
 export {jsbookieReplitDBFunctions as default};
+
