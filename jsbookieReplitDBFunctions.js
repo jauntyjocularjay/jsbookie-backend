@@ -64,7 +64,7 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
     this.logSports(true);
   }
 
-  addUsers(){
+  setUser(user){
     // @TODO add users to database
   }
   
