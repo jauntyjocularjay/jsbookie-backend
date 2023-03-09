@@ -9,4 +9,5 @@ package.json
 package-lock.json
 replit.nix
 
-.PushMergeDeletePrune.sh
+.GitMerge.sh
+
