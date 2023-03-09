@@ -66,6 +66,8 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
 
   setUser(user){
     // @TODO add users to database
+    this.setRecord('users')
+      .then()
   }
   
   reset(){
