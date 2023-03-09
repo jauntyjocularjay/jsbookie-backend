@@ -9,6 +9,7 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
   constructor(){
     super();
     this.activeOnly = false;
+    this.user = null;
   }
 
   logOdds(sport){
@@ -64,15 +65,21 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
     this.logSports(true);
   }
 
-  setUser(user){
+  addUser(user){
     // @TODO add users to database
-    this.setRecord('users')
-      .then()
+    this.user = user;
+    this.getRecord('users')
+        .then( (users) => { // users is an array
+          users.push(user);
+          this.setRecord('users', users);
+          this.reset();
+        });
   }
   
   reset(){
     super.reset();
     this.activeOnly = false;
+    this.user = null;
   }
 
 }

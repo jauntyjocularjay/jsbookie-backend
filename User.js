@@ -1,11 +1,13 @@
+// Imports
+import jsbookieReplitDBFunctions from './jsbookieReplitDBFunctions.js';
+
+const dbfn = new jsbookieReplitDBFunctions();
 
 class User {
 
   #user_id = dbfn.getRecord('users').length - 1;
 
   constructor( name ){
-    this.constructor();
-    
     this.balance = {
       deposit: 0,
       winnings: 0
@@ -35,4 +37,4 @@ class Bet {
   }
 }
 
-export {Bet, User};
+export {User, Bet};
