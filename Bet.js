@@ -1,5 +1,4 @@
 
-
 class User {
 
   static let = 0;
