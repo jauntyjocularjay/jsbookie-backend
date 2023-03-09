@@ -1,8 +1,8 @@
 
 class User {
 
-  static let = 0;
-  
+  this.user_id = 0;
+
   constructor( name ){
     this.balance = {
       deposit: 0,
