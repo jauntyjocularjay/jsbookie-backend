@@ -5,16 +5,23 @@ const dbfn = new jsbookieReplitDBFunctions();
 
 class User {
 
-  #user_id = dbfn.getRecord('users').length - 1;
+  #user_id;
 
   constructor( name ){
     this.balance = {
       deposit: 0,
       winnings: 0
     };
-    this.user_id++;
     this.name = name;
     this.bet_count = 0;
+    this.setUserID();
+  }
+
+  setUserID(){
+    dbfn.getRecord('users')
+      .then( (users) => {
+        this.user_id = users.length;
+      });
   }
 
   purchase(){
