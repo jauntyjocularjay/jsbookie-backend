@@ -20,7 +20,7 @@ git commit -a -m $commit_message # 'MESSAGE'
 git push origin $github_working_branch # NAME_OF_BRANCH
 
 # Merge into main:
-git checkout main
+git checkout $github_target_branch
 git merge $github_working_branch # NAME_OF_BRANCH
 git push
 
