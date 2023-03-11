@@ -26,7 +26,7 @@ git push
 
 # Choose one
   # Return to the working branch
-  git checkout $github_working_branch
+  # git checkout $github_working_branch
  
   # Delete the working branch
   # git branch --delete $github_working_branch # NAME_OF_BRANCH
