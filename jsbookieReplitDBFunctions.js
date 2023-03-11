@@ -72,6 +72,7 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
           this.setRecord('users', users);
           this.reset();
         });
+    this.reset();
   }
 
 }
