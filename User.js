@@ -15,6 +15,7 @@ class User {
     this.name = name;
     this.bet_count = 0;
     this.setUserID();
+    console.log('User created.');
   }
 
   setUserID(){

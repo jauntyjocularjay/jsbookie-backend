@@ -16,7 +16,7 @@ function Main(isCycling) {
   if (isCycling) {
     setInterval(() => { cycle() }, interval)
   } else {
-    Playground();
+    // Playground();
   }
 }
 
@@ -27,11 +27,12 @@ function Cycle() {
 function Playground() {
   // Code to assist writing
   // dbfn.setRecord('users', []);
-  // const my_user = new User('jadedrakerider');
-  // dbfn.addUser(my_user);
-  // dbfn.logRecord('users');
-
-  dbfn.logAllSports();
+  const my_user = new User('jadedrakerider');
+  dbfn.addUser(my_user);
+  dbfn.logRecord('users');
+  
+    console.log('User.');
+  // dbfn.logAllSports();
 
 }
 
