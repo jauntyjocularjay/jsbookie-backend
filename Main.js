@@ -1,7 +1,8 @@
 // Imports
 import jsbookieReplitDBFunctions from './jsbookieReplitDBFunctions.js';
 import { sport, request } from './the-odds-api.js';
-import { User, Bet } from './User.js';
+import User from './User.js';
+import Bet from './Bet.js';
 
 const dbfn = new jsbookieReplitDBFunctions();
 
@@ -30,8 +31,8 @@ function Playground() {
   const my_user = new User('jadedrakerider');
   dbfn.addUser(my_user);
   dbfn.logRecord('users');
-  
-    console.log('User.');
+
+  console.log('User.');
   // dbfn.logAllSports();
 
 }

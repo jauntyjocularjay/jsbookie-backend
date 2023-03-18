@@ -1,48 +1,39 @@
 // Imports
-import jsbookieReplitDBFunctions from './jsbookieReplitDBFunctions.js';
+import {Bet} from './Bet.js';
+import { jsbookieDBFunctions } from './jsbookieReplitDBFunctions.js';
 
-const dbfn = new jsbookieReplitDBFunctions();
+const dbfn = new jsbookieDBFunctions();
 
-class User {
+export class User {
 
   #user_id;
 
-  constructor( name ){
+  constructor(obj) {
     this.balance = {
       deposit: 0,
       winnings: 0
     };
-    this.name = name;
+    this.name = obj.name;
     this.bet_count = 0;
+    this.bets = [];
     this.setUserID();
     console.log('User created.');
   }
 
-  setUserID(){
+  setUserID() {
     dbfn.getRecord('users')
-      .then( (users) => {
-        this.user_id = users.length;
+      .then((users) => {
+        this.#user_id = users.length;
       });
   }
 
-  purchase(){
+  purchase() {
     // @TODO User.purchase()
-    
+
     this.bet_count++;
 
   }
 
 }
 
-class Bet {
-  constructor(game_id, purchaser){
-    this.price = 0.00;
-    this.odds = 0.00;
-    this.game_id = game_id;
-    this.home_team = true;
-    this.eventDate = '';
-    this.purchaser = purchaser;
-  }
-}
 
-export {User, Bet};
