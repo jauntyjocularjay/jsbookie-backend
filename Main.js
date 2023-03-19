@@ -27,12 +27,24 @@ function Cycle() {
 function Playground() {
   // Code to assist writing
   // dbfn.setRecord('users', []);
-  // const my_user = new User('jadedrakerider');
-  // dbfn.addUser(my_user);
+  const user = new User('Jadedrakerider');
+  console.log(user);
+  // dbfn.addUser(user);
+  // dbfn.removeUser(0);
   // dbfn.logRecord('users');
   // request.currentSports();
-  dbfn.logActiveSports();
+
+  // request.odds(sport.nba);
+  // dbfn.list();
+  // dbfn.logOdds(sport.nba);
+  
+  // dbfn.logOdds(sport.nhl);
+  // dbfn.logRecord(sports);
+  // dbfn.logOdds(sport.nba);
+  
 
 }
 
 export { Main };
+
+

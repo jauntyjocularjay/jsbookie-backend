@@ -75,5 +75,6 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
 
 }
 
-export {jsbookieReplitDBFunctions as default};
+export { jsbookieReplitDBFunctions as default };
+
 

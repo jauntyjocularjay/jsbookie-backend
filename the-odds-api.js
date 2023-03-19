@@ -80,8 +80,8 @@ const request = {
     
     fetch(url)
       .then((response) => response.json())
-      .then((data) => { dbfn.setRecord(request.dbkey, data) });
-    // Return request.dbkey to empty string.
+      .then((data) => { dbfn.setRecord(desiredSport.dbkey, data) });
+    // Reset request.dbkey to empty string.
     request.reset();
   },
 
