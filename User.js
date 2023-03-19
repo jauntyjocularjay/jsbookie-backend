@@ -1,10 +1,10 @@
 // Imports
-import {Bet} from './Bet.js';
-import { jsbookieDBFunctions } from './jsbookieReplitDBFunctions.js';
+import { default as Bet } from './Bet.js';
+import { default as jsbookieReplitDBFunctions } from './jsbookieReplitDBFunctions.js';
 
 const dbfn = new jsbookieDBFunctions();
 
-export class User {
+class User {
 
   #user_id;
 
@@ -35,5 +35,7 @@ export class User {
   }
 
 }
+
+export { User as default };
 
 

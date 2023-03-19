@@ -11,7 +11,7 @@ function Main(isCycling) {
   const interval = 30 * 1000;
 
   if (typeof isCycling != 'boolean') {
-    throw new Error('Parameter is not a boolean.');
+    throw new Error('Invalid Parameter Error: parameter is not a boolean.');
   }
 
   if (isCycling) {
@@ -28,8 +28,8 @@ function Cycle() {
 function Playground() {
   // Code to assist writing
   // dbfn.setRecord('users', []);
-  const my_user = new User('jadedrakerider');
-  dbfn.addUser(my_user);
+  // const my_user = new User('jadedrakerider');
+  // dbfn.addUser(my_user);
   dbfn.logRecord('users');
 
   console.log('User.');

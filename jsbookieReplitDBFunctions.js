@@ -4,7 +4,7 @@ import ReplitDBFunctions from './ReplitDBFunctions/ReplitDBFunctionsClass.js';
 import Database from '@replit/database';
 const db = new Database();
 
-export class jsbookieReplitDBFunctions extends ReplitDBFunctions {
+class jsbookieReplitDBFunctions extends ReplitDBFunctionsdefault {
 
   constructor() {
     super();
@@ -76,3 +76,7 @@ export class jsbookieReplitDBFunctions extends ReplitDBFunctions {
   }
 
 }
+
+export { jsbookieReplitDBFunctions as default };
+
+
