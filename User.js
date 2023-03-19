@@ -12,51 +12,22 @@ class User {
     };
     this.name = name;
     this.bets = [];
-    this.user_id;
-    this.setUserID();
-
-    console.log('user_id set as', this.user_id)
+    this.id = 0;
   }
 
   /** 
   * @TODO Testing required
+  * @param obj is an object with the following properties:
+        {
+            deposits: number,
+            winnings: number,
+            bets: [bets]
+        }
   */
-  addDeposit(number){
-    console.log('Old balance:', this.balance.desposit)    
-    this.balance.deposit += Number.number.toFixed(2);
-    console.log('New balance:', this.balance.desposit)
+  set( obj ){
+
   }
 
-  /** 
-  * @TODO Testing required
-  */
-  addWinnings(number){
-    this.balance.winnings += number
-  }
-
-  /** 
-  * @TODO Testing required
-  */
-  balance(){
-    const balance = {
-      deposit: this.balance.deposit,
-      winnings: this.balance.winnings,
-      total: this.balance.deposit + this.balance.winnings
-    };
-
-    return balance;
-  }
-
-  /** 
-  * @TODO Testing required
-  */
-  setUserID() {
-    dbfn.getRecord('users')
-      .then((users) => {
-        console.log('users.length =', users.length)
-        this.user_id = users.length;
-      });
-  }
 
   
   /** 
