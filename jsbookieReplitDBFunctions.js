@@ -32,12 +32,10 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
 
   logSports(activeOnly){
 
-    this.temp = activeOnly;
-
     db.get('sports')
       .then( (sports) => {
         let activeSports = new Array();
-        if (this.temp) {
+        if (activeOnly) {
           sports.forEach( (sport) => {
             if (sport.active) {
               activeSports.push(sport);

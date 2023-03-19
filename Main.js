@@ -30,8 +30,8 @@ function Playground() {
   // const my_user = new User('jadedrakerider');
   // dbfn.addUser(my_user);
   // dbfn.logRecord('users');
-
-  dbfn.logAllSports();
+  // request.currentSports();
+  dbfn.logActiveSports();
 
 }
 

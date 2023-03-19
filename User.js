@@ -7,26 +7,27 @@ class User {
 
   #user_id;
 
-  constructor( name ){
+  constructor(name) {
     this.balance = {
       deposit: 0,
       winnings: 0
     };
     this.name = name;
-    this.bet_count = 0;
+    this.bets = [];
     this.setUserID();
   }
 
-  setUserID(){
+  setUserID() {
     dbfn.getRecord('users')
-      .then( (users) => {
+      .then((users) => {
         this.user_id = users.length;
       });
   }
 
-  purchase(){
+  purchase(bet) {
     // @TODO User.purchase()
-    
+
+    this.bets.push(bet);
     this.bet_count++;
 
   }
@@ -34,14 +35,13 @@ class User {
 }
 
 class Bet {
-  constructor(game_id, purchaser){
+  constructor(game_id, home_team) {
     this.price = 0.00;
     this.odds = 0.00;
     this.game_id = game_id;
-    this.home_team = true;
+    this.home_team = home_team;
     this.eventDate = '';
-    this.purchaser = purchaser;
   }
 }
 
-export {User, Bet};
+export { User, Bet };
