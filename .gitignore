@@ -1,0 +1,12 @@
+
+/node_modules
+/ReplitDBFunctions
+
+.replit
+.config
+.breakpoints
+package-lock.json
+replit.nix
+
+.GitMerge.sh
+
