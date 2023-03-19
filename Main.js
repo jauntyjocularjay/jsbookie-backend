@@ -1,8 +1,7 @@
 // Imports
 import jsbookieReplitDBFunctions from './jsbookieReplitDBFunctions.js';
 import { sport, request } from './the-odds-api.js';
-import User from './User.js';
-import Bet from './Bet.js';
+import { User, Bet } from './User.js';
 
 const dbfn = new jsbookieReplitDBFunctions();
 
@@ -11,13 +10,13 @@ function Main(isCycling) {
   const interval = 30 * 1000;
 
   if (typeof isCycling != 'boolean') {
-    throw new Error('Invalid Parameter Error: parameter is not a boolean.');
+    throw new Error('Parameter is not a boolean.');
   }
 
   if (isCycling) {
     setInterval(() => { cycle() }, interval)
   } else {
-    // Playground();
+    Playground();
   }
 }
 
@@ -30,10 +29,9 @@ function Playground() {
   // dbfn.setRecord('users', []);
   // const my_user = new User('jadedrakerider');
   // dbfn.addUser(my_user);
-  dbfn.logRecord('users');
+  // dbfn.logRecord('users');
 
-  console.log('User.');
-  // dbfn.logAllSports();
+  dbfn.logAllSports();
 
 }
 
