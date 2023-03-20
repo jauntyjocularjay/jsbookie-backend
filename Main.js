@@ -25,24 +25,30 @@ function Cycle() {
 }
 
 function Playground() {
-  // Code to assist writing
-  // dbfn.setRecord('users', []);
-  const user = new User('Jadedrakerider');
-  console.log(user);
-  // dbfn.addUser(user);
-  // dbfn.removeUser(0);
-  // dbfn.logRecord('users');
-  // request.currentSports();
+    // Code to assist writing
+    // dbfn.setRecord('users', []);
+    // const user = new User('Jadedrakerider');
+    // console.log(user);
 
-  // request.odds(sport.nba);
-  // dbfn.list();
-  // dbfn.logOdds(sport.nba);
-  
-  // dbfn.logOdds(sport.nhl);
-  // dbfn.logRecord(sports);
-  // dbfn.logOdds(sport.nba);
-  
+    // user.set({deposits: 3.14, winnings: 1.11, bets: ['bet']});
+    // console.log(user);
 
+    // dbfn.addUser(user);
+    
+    dbfn.logRecord('users');
+    // dbfn.removeUser(0);
+    // dbfn.logRecord('users');
+    // request.currentSports();
+    
+    // request.odds(sport.nba);
+    // dbfn.list();
+    // dbfn.logOdds(sport.nba);
+    
+    // dbfn.logOdds(sport.nhl);
+    // dbfn.logRecord(sports);
+    // dbfn.logOdds(sport.nba);
+    
+    
 }
 
 export { Main };

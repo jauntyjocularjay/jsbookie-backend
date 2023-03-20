@@ -30,7 +30,7 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
       }); // games
   }
 
-  logSports(activeOnly){
+  #logSports(activeOnly){
 
     db.get('sports')
       .then( (sports) => {
@@ -54,23 +54,26 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
   }
 
   logAllSports(){
-    this.logSports(false);
+    this.#logSports(false);
   }
 
   logActiveSports(){
-    this.logSports(true);
+    this.#logSports(true);
   }
 
   addUser(user){
     // @TODO add users to database
-    this.temp = user;
-    this.getRecord('users')
+    this.get('users')
         .then( (users) => { // users is an array
-          users.push(user);
-          this.setRecord('users', users);
-          this.reset();
+            console.log('Users:', users);
+            users.push(user);
+            this.setRecord('users', users);
+            return true;
+        })
+        .then((success) => {
+            // code here
+            
         });
-    this.reset();
   }
 
 }
