@@ -6,12 +6,11 @@ const db = new Database();
 
 class jsbookieReplitDBFunctions extends ReplitDBFunctions {
 
-  constructor(){
+    constructor(){
     super();
-    this.activeOnly = false;
-  }
-
-  logOdds(sport){
+}
+    
+    logOdds(sport){
     db.get(sport.dbkey)
       .then((games) => {
         games.forEach( (game) => {
@@ -29,16 +28,14 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
           console.log('\n'); // Log empty lines for formatting logs.
         }); // game
       }); // games
-  }
-
-  logSports(activeOnly){
-
-    this.activeOnly = activeOnly;
-
+}
+    
+    #logSports(activeOnly){
+    
     db.get('sports')
       .then( (sports) => {
         let activeSports = new Array();
-        if (this.activeOnly) {
+        if (activeOnly) {
           sports.forEach( (sport) => {
             if (sport.active) {
               activeSports.push(sport);
@@ -54,21 +51,47 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
       });
     
     this.reset();
+}
+    
+    logAllSports(){
+    this.#logSports(false);
+}
+    
+    logActiveSports(){
+    this.#logSports(true);
+}
+    
+    addUser(user){
+    // @TODO add users to database
+    this.get('users')
+        .then( (users) => { // users is an array
+            console.log('Users:', users);
+            users.push(user);
+            this.setRecord('users', users);
+            return true;
+        })
+        .then((success) => {
+            // code here
+            
+        });
   }
 
-  logAllSports(){
-    this.logSports(false);
-  }
-
-  logActiveSports(){
-    this.logSports(true);
-  }
-  
-  reset(){
-    super.reset();
-    this.activeOnly = false;
-  }
-
+    updateUser( index, user ){
+        this.get('users')
+            .then((users) => {
+                users[index] = user;
+            })
+            .then((users) => {
+                this.setRecord('users', user);
+                return true;
+            })
+            .then((success) => {
+                // Code Here
+                console.log('Update User Successful:', success)
+            })
+    }
 }
 
-export {jsbookieReplitDBFunctions as default};
+export { jsbookieReplitDBFunctions as default };
+
+
