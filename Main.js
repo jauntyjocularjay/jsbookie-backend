@@ -31,9 +31,11 @@ function Playground() {
     // console.log(user);
 
     // user.set({deposits: 3.14, winnings: 1.11, bets: ['bet']});
+    // user.set({deposits: 3.14, winnings: 1.11, bets: ['bet']});
     // console.log(user);
 
     // dbfn.addUser(user);
+    // dbfn.updateUser(0, user)
     
     dbfn.logRecord('users');
     // dbfn.removeUser(0);

@@ -6,11 +6,11 @@ const db = new Database();
 
 class jsbookieReplitDBFunctions extends ReplitDBFunctions {
 
-  constructor(){
+    constructor(){
     super();
-  }
-
-  logOdds(sport){
+}
+    
+    logOdds(sport){
     db.get(sport.dbkey)
       .then((games) => {
         games.forEach( (game) => {
@@ -28,10 +28,10 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
           console.log('\n'); // Log empty lines for formatting logs.
         }); // game
       }); // games
-  }
-
-  #logSports(activeOnly){
-
+}
+    
+    #logSports(activeOnly){
+    
     db.get('sports')
       .then( (sports) => {
         let activeSports = new Array();
@@ -51,17 +51,17 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
       });
     
     this.reset();
-  }
-
-  logAllSports(){
+}
+    
+    logAllSports(){
     this.#logSports(false);
-  }
-
-  logActiveSports(){
+}
+    
+    logActiveSports(){
     this.#logSports(true);
-  }
-
-  addUser(user){
+}
+    
+    addUser(user){
     // @TODO add users to database
     this.get('users')
         .then( (users) => { // users is an array
@@ -76,6 +76,20 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
         });
   }
 
+    updateUser( index, user ){
+        this.get('users')
+            .then((users) => {
+                users[index] = user;
+            })
+            .then((users) => {
+                this.setRecord('users', user);
+                return true;
+            })
+            .then((success) => {
+                // Code Here
+                console.log('Update User Successful:', success)
+            })
+    }
 }
 
 export { jsbookieReplitDBFunctions as default };
