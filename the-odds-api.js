@@ -9,7 +9,12 @@ const api = {
   oddsFormat: 'decimal'
 };
 
-const sport = { // This is what gets passed in request.odds(desiredSport) as desiredSport
+const sport = { 
+    /**
+    * @summary 
+    * This is what gets passed in request.odds(desiredSport)
+    * as desiredSport
+    */
   ncaa: {
     dbkey: 'ncaa',
     key: 'americanfootball_ncaaf',
@@ -75,24 +80,16 @@ const request = {
   
   odds: (desiredSport) => {
     const apikey = process.env['api_key'];
-    const url = `${api.base_url}/v4/sports/${desiredSport.key}/odds/?apiKey=${apikey}&regions=${api.regions}`;
-    request.dbkey = desiredSport.dbkey;
+    const url = 
+        `${api.base_url}/v4/sports/${desiredSport.key}` + 
+        `/odds/?apiKey=${apikey}&regions=${api.regions}`;
     
     fetch(url)
       .then((response) => response.json())
-      .then((data) => { dbfn.setRecord(desiredSport.dbkey, data) });
-    // Reset request.dbkey to empty string.
-    request.reset();
+      .then((data) => { 
+          dbfn.setRecord(desiredSport.dbkey, data) 
+      });
   },
-
-  reset: () => {
-    // reset request.dbkey to empty string.
-    request.dbkey = '';
-    console.log('request.dbkey reset');
-    return true;
-  },
-  
-  dbkey: ''
     
 };
 
