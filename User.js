@@ -31,7 +31,8 @@ class User {
             });
         } else {
             throw new Error('User Mismatch: ' + 
-                            'Name does not match the user at this index');
+                            'Name does not match the user' +
+                            'at this index');
         }
 
 
@@ -47,7 +48,7 @@ class UserSet {
         if (typeof bets == 'array'){
             this.bets = bets;
         } else {
-            throw new Error('Invalid Argument Exception:' + 
+            throw new Error('Invalid Argument Exception:\n' + 
                             'bets is not an array')
         }
     }
