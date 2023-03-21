@@ -1,7 +1,7 @@
 // Imports
 import jsbookieReplitDBFunctions from './jsbookieReplitDBFunctions.js';
 import { sport, request } from './the-odds-api.js';
-import { User, Bet } from './User.js';
+import { User, UserSet, Bet } from './User.js';
 
 const dbfn = new jsbookieReplitDBFunctions();
 
@@ -14,7 +14,7 @@ function Main(isCycling) {
   }
 
   if (isCycling) {
-    setInterval(() => { cycle() }, interval)
+    setInterval(() => { Cycle() }, interval)
   } else {
     Playground();
   }
@@ -27,15 +27,16 @@ function Cycle() {
 function Playground() {
     // Code to assist writing
     // dbfn.setRecord('users', []);
-    // const user = new User('Jadedrakerider');
+    const user = new User('Jadedrakerider');
+    const uset = new UserSet(3.14, 1.11, ['bet'])
     // console.log(user);
 
-    // user.set({deposits: 3.14, winnings: 1.11, bets: ['bet']});
-    // user.set({deposits: 3.14, winnings: 1.11, bets: ['bet']});
-    // console.log(user);
+    user.set(uset);
+    // user.set(uset);
+    console.log(user);
 
-    // dbfn.addUser(user);
-    // dbfn.updateUser(0, user)
+    dbfn.addUser(user);
+    dbfn.updateUser(0, user)
     
     dbfn.logRecord('users');
     // dbfn.removeUser(0);

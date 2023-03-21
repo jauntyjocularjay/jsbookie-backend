@@ -2,13 +2,12 @@
 import ReplitDBFunctions from './ReplitDBFunctions/ReplitDBFunctionsClass.js';
 
 import Database from '@replit/database';
-const db = new Database();
 
 class jsbookieReplitDBFunctions extends ReplitDBFunctions {
 
     constructor(){
-    super();
-}
+        super();
+    }
     
     logOdds(sport){
     db.get(sport.dbkey)
@@ -90,6 +89,9 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
                 console.log('Update User Successful:', success)
             })
     }
+
+
+
 }
 
 export { jsbookieReplitDBFunctions as default };

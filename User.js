@@ -1,7 +1,4 @@
 // Imports
-import jsbookieReplitDBFunctions from './jsbookieReplitDBFunctions.js';
-
-const dbfn = new jsbookieReplitDBFunctions();
 
 class User {
 
@@ -15,25 +12,45 @@ class User {
         this.id = 0;
     }
 
-/** 
-* @TODO Testing required
-* @param obj is an object with the following properties:
-    {
-        deposits: number,
-        winnings: number,
-        bets: [bets]
+    /** 
+    * @TODO Testing required
+    * @param obj is a UserSet (class below) with
+    * the following properties:
+    *   {
+    *       deposits: number,
+    *       winnings: number,
+    *       bets: [bets]
+    *   }
+    */
+    set( userSet ){
+        if(this.name == userSet.name){
+            this.balance.deposits += userSet.deposits;
+            this.balance.winnings += userSet.winnings;
+            userSet.bets.forEach( (bet) => {
+                this.bets.push(bet);
+            });
+        } else {
+            throw new Error('User Mismatch: ' + 
+                            'Name does not match the user at this index');
+        }
+
+
     }
-*/
-set( obj ){
-    this.balance.deposits += obj.deposits;
-    this.balance.winnings += obj.winnings;
-    obj.bets.forEach( (bet) => {
-        this.bets.push(bet);
-    } );
+
+
 }
 
-
-
+class UserSet {
+    constructor( deposits, winnings, bets ){
+        this.deposits = deposits;
+        this.winnings = winnings;
+        if (typeof bets == 'array'){
+            this.bets = bets;
+        } else {
+            throw new Error('Invalid Argument Exception:' + 
+                            'bets is not an array')
+        }
+    }
 }
 
 class Bet {
@@ -53,4 +70,4 @@ class Bet {
 
 }
 
-export { User, Bet };
+export { User, UserSet, Bet };
