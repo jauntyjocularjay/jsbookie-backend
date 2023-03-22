@@ -25,20 +25,25 @@ function Cycle() {
 }
 
 function Playground() {
+
+    // dbfn.list().then( (keys) => {console.log(keys)} );
+    
+    // request.allSports();
+    dbfn.logRecord('sports');
     // Code to assist writing
     // dbfn.setRecord('users', []);
-    const user = new User('Jadedrakerider');
-    const uset = new UserSet(3.14, 1.11, ['bet'])
+    // const user = new User('Jadedrakerider');
+    // const uset = new UserSet(3.14, 1.11, ['bet']);
     // console.log(user);
 
-    user.set(uset);
     // user.set(uset);
-    console.log(user);
+    // user.set(uset);
+    // console.log(user);
 
-    dbfn.addUser(user);
-    dbfn.updateUser(0, user)
+    // dbfn.addUser(user);
+    // dbfn.updateUser(0, user)
     
-    dbfn.logRecord('users');
+    // dbfn.logRecord('users');
     // dbfn.removeUser(0);
     // dbfn.logRecord('users');
     // request.currentSports();

@@ -1,16 +1,14 @@
 
 import ReplitDBFunctions from './ReplitDBFunctions/ReplitDBFunctionsClass.js';
 
-import Database from '@replit/database';
-
 class jsbookieReplitDBFunctions extends ReplitDBFunctions {
 
     constructor(){
         super();
     }
     
-    logOdds(sport){
-    db.get(sport.dbkey)
+    logOdds( sport ){
+    this.get(sport.dbkey)
       .then((games) => {
         games.forEach( (game) => {
           console.log(`Game: ${game.home_team} v. ${game.away_team}`);
@@ -21,7 +19,8 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
               market.outcomes.forEach( (outcome) => {
                 console.log(`  ${outcome.name}: ${outcome.price}`);
               }); // outcome
-              console.log(''); // Log an empty line for formatting logs.
+              console.log(''); 
+           // Log an empty line for formatting logs.
             }); // market
           }); // bookmaker
           console.log('\n'); // Log empty lines for formatting logs.
@@ -29,50 +28,50 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
       }); // games
 }
     
-    #logSports(activeOnly){
+    #logSports( activeOnly ){
     
-    db.get('sports')
-      .then( (sports) => {
-        let activeSports = new Array();
-        if (activeOnly) {
-          sports.forEach( (sport) => {
-            if (sport.active) {
-              activeSports.push(sport);
+        this.get('sports')
+          .then( (sports) => {
+            let activeSports = new Array();
+            if (activeOnly) {
+              sports.forEach( (sport) => {
+                if (sport.active) {
+                  activeSports.push(sport);
+                }
+              });
+              return activeSports;
+            } else {
+              return sports;
             }
+          })
+          .then( (sports) => {
+            console.log('Sports:', sports)
           });
-          return activeSports;
-        } else {
-          return sports;
-        }
-      })
-      .then( (sports) => {
-        console.log('Sports:', sports)
-      });
-    
-    this.reset();
-}
+        
+        this.reset();
+    }
     
     logAllSports(){
-    this.#logSports(false);
-}
+        this.#logSports(false);
+    }
     
     logActiveSports(){
-    this.#logSports(true);
-}
+        this.#logSports(true);
+    }
     
-    addUser(user){
+    addUser( user ){
     // @TODO add users to database
-    this.get('users')
-        .then( (users) => { // users is an array
-            console.log('Users:', users);
-            users.push(user);
-            this.setRecord('users', users);
-            return true;
-        })
-        .then((success) => {
-            // code here
-            
-        });
+        this.get('users')
+            .then( (users) => { // users is an array
+                console.log('Users:', users);
+                users.push(user);
+                this.setRecord('users', users);
+                return true;
+            })
+            .then( (success) => {
+                // code here
+                return success;
+            });
   }
 
     updateUser( index, user ){
@@ -81,7 +80,7 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
                 users[index] = user;
             })
             .then((users) => {
-                this.setRecord('users', user);
+                this.setRecord('users', users);
                 return true;
             })
             .then((success) => {
