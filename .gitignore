@@ -1,12 +1,13 @@
 
 /node_modules
-/ReplitDBFunctions
 
 .replit
 .config
 .breakpoints
+package.json
+LICENSE.md
+README.md
 package-lock.json
 replit.nix
 
-.GitMerge.sh
 
