@@ -1,9 +1,9 @@
 // Imports
-import jsbookieReplitDBFunctions from './jsbookieReplitDBFunctions.js';
-import { sport, request } from './the-odds-api.js';
-import { User, UserSet, Bet } from './User.js';
+import BookieDB from './scripts/BookieDB.mjs';
+import { sport, request } from './scripts/the-odds-api.mjs';
+import { User, UserSet, Bet } from './scripts/User.mjs';
 
-const dbfn = new jsbookieReplitDBFunctions();
+const db = new BookieDB();
 
 function Main(isCycling) {
   const day = 86400000; // 24 hours in milliseconds
@@ -26,12 +26,12 @@ function Cycle() {
 
 function Playground() {
 
-    // dbfn.list().then( (keys) => {console.log(keys)} );
+    // db.list().then( (keys) => {console.log(keys)} );
     
-    // request.allSports();
-    dbfn.logRecord('sports');
+    request.allSports();
+    // db.logRecord('sports');
     // Code to assist writing
-    // dbfn.setRecord('users', []);
+    // db.setRecord('users', []);
     // const user = new User('Jadedrakerider');
     // const uset = new UserSet(3.14, 1.11, ['bet']);
     // console.log(user);
@@ -40,21 +40,21 @@ function Playground() {
     // user.set(uset);
     // console.log(user);
 
-    // dbfn.addUser(user);
-    // dbfn.updateUser(0, user)
+    // db.addUser(user);
+    // db.updateUser(0, user)
     
-    // dbfn.logRecord('users');
-    // dbfn.removeUser(0);
-    // dbfn.logRecord('users');
+    // db.logRecord('users');
+    // db.removeUser(0);
+    // db.logRecord('users');
     // request.currentSports();
     
     // request.odds(sport.nba);
-    // dbfn.list();
-    // dbfn.logOdds(sport.nba);
+    // db.list();
+    // db.logOdds(sport.nba);
     
-    // dbfn.logOdds(sport.nhl);
-    // dbfn.logRecord(sports);
-    // dbfn.logOdds(sport.nba);
+    // db.logOdds(sport.nhl);
+    // db.logRecord(sports);
+    // db.logOdds(sport.nba);
     
     
 }

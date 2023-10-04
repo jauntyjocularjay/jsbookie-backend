@@ -1,7 +1,7 @@
 
-import ReplitDBFunctions from './ReplitDBFunctions/ReplitDBFunctionsClass.js';
+import ReplitDB from '../libs/ReplitDB/ReplitDB.mjs';
 
-class jsbookieReplitDBFunctions extends ReplitDBFunctions {
+export default class BookieDB extends ReplitDB {
 
     constructor(){
         super();
@@ -58,6 +58,10 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
     logActiveSports(){
         this.#logSports(true);
     }
+
+    updateSports(){
+        // @todo finish this
+    }
     
     addUser( user ){
     // @TODO add users to database
@@ -66,12 +70,8 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
                 console.log('Users:', users);
                 users.push(user);
                 this.setRecord('users', users);
-                return true;
-            })
-            .then( (success) => {
-                // code here
-                return success;
-            });
+                return user;
+            } );
   }
 
     updateUser( index, user ){
@@ -88,11 +88,6 @@ class jsbookieReplitDBFunctions extends ReplitDBFunctions {
                 console.log('Update User Successful:', success)
             })
     }
-
-
-
 }
-
-export { jsbookieReplitDBFunctions as default };
 
 

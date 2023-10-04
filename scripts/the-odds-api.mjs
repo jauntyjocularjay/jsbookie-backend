@@ -1,13 +1,9 @@
 import fetch from 'node-fetch';
-import jsbookieReplitDBFunctions from './jsbookieReplitDBFunctions.js';
+import BookieDB from './BookieDB.mjs';
 
-const dbfn = new jsbookieReplitDBFunctions();
-
-const api = {
-    base_url: 'https://api.the-odds-api.com',
-    regions: 'us',
-    oddsFormat: 'decimal'
-};
+const db = new BookieDB()
+const base_url = 'https://api.the-odds-api.com';
+const region = { us:'us'}
 
 const sport = {
     /**
@@ -60,25 +56,35 @@ const sport = {
 const request = {
     sports: (bool) => {
         const apikey = process.env['api_key'];
-        const url = `${api.base_url}/v4/sports/` +
-                    `?apiKey=${apikey}&all=${bool}`;
+        const url = `${base_url}/v4/sports/` +
+            `?apiKey=${apikey}&all=${bool}`;
 
-        
+        console.log('GET:', url);
+
         /** 
         * @todo
         *     Ensure this is no longer needed - 
-        *     jsbookieReplitDBFunctions has functions to return
+        *     BookieDB has functions to return
         *     all or current sports.
         */
         // bool 
         //     ? request.dbkey = 'sports' 
         //     : request.dbkey = 'currentSports';
-        
+
         request.dbkey = 'sports';
 
         fetch(url)
-            .then((response) => response.json())
-            .then((data) => dbfn.setRecord(request.dbkey, data) );
+            .then((response) => {
+                response.json();
+                request.logResponse(response);
+            })
+            .then((data) => {
+                if (bool) {
+                    db.setRecord(request.dbkey, data);
+                } else {
+                    db.updateSports();
+                }
+            });
 
         request.reset();
     },
@@ -94,15 +100,29 @@ const request = {
     odds: (desiredSport) => {
         const apikey = process.env['api_key'];
         const url =
-            `${api.base_url}/v4/sports/${desiredSport.key}` +
-            `/odds/?apiKey=${apikey}&regions=${api.regions}`;
+            `${base_url}/v4/sports/${desiredSport.key}` +
+            `/odds/?apiKey=${apikey}&regions=${region.us}`;
 
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
-                dbfn.setRecord(desiredSport.dbkey, data)
+                db.setRecord(desiredSport.dbkey, data)
             });
     },
+
+    logResponse: (response) => {
+        if (response.status >= 200 || response.status < 300) {
+
+            console.log(response.status, ': ', response.statusText);
+
+        } else {
+
+            throw new Error('API Error\n' +
+                `  ${response.status}: ${response.statusText}`);
+
+        }
+    },
+
     reset() {
         request.dbkey = '';
     },
