@@ -1,14 +1,15 @@
 // Imports
 
 class User {
+
     constructor(name) {
-        balance = {
+        this.balance = {
             deposits: 0,
             winnings: 0
-        }
-        name = name;
-        bets = [];
-        id = 0;
+        };
+        this.name = name;
+        this.bets = [];
+        this.id = 0;
     }
 
     /** 

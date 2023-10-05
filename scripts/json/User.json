@@ -1,0 +1,9 @@
+{
+    balance: {
+        deposits: 0,
+        winnings: 0
+    },
+    name: name,
+    bets: [],
+    id: 0
+}
