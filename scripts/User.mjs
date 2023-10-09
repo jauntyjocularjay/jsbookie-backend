@@ -1,14 +1,17 @@
 // Imports
+import ReplitDB from '../libs/ReplitDB/ReplitDB.mjs'
 
-class User {
-    constructor(name) {
-        balance = {
+export class User {
+    static id;
+
+    constructor(name, id) {
+        this.id = id;
+        this.balance = {
             deposits: 0,
             winnings: 0
         }
-        name = name;
-        bets = [];
-        id = 0;
+        this.name = name;
+        this.bet_ids = [];
     }
 
     /** 
@@ -26,12 +29,12 @@ class User {
             this.balance.deposits += userSet.deposits;
             this.balance.winnings += userSet.winnings;
             userSet.bets.forEach( (bet) => {
-                this.bets.push(bet);
-            });
+                this.bets.push(bet)
+            })
         } else {
             throw new Error('User Mismatch: ' + 
                             'Name does not match the user' +
-                            'at this index');
+                            'at this index')
         }
 
 
@@ -40,7 +43,7 @@ class User {
 
 }
 
-class UserSet {
+export class UserSet {
     constructor( deposits, winnings, bets ){
         this.deposits = deposits;
         this.winnings = winnings;
@@ -53,12 +56,12 @@ class UserSet {
     }
 }
 
-class Bet {
-    constructor(game_id, bet_on_home_team) {
+export class Bet {
+    constructor( gameObj ) {
         this.price = 0.00;
-        this.odds = 0.00;
-        this.game_id = game_id;
-        this.bet_on_home_team = bet_on_home_team;
+        this.odds = gameObj.odds;
+        this.game_id = gameObj.game_id;
+        this.on_home_team = gameObj.on_home_team;
         this.eventDate = '';
     }
 
@@ -69,5 +72,3 @@ class Bet {
 
 
 }
-
-export { User, UserSet, Bet };

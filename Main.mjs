@@ -1,62 +1,48 @@
+'use strict';
 // Imports
-import BookieDB from './scripts/BookieDB.mjs';
-import { sport, request } from './scripts/the-odds-api.mjs';
+import { getSports, getOdds } from './scripts/the-odds-api.mjs';
 import { User, UserSet, Bet } from './scripts/User.mjs';
+import ReplitDB from './libs/ReplitDB/ReplitDB.mjs'
 
-const db = new BookieDB();
+const db = new ReplitDB()
 
 function Main(isCycling) {
-  const day = 86400000; // 24 hours in milliseconds
-  const interval = 30 * 1000;
-
-  if (typeof isCycling != 'boolean') {
-    throw new Error('Parameter is not a boolean.');
-  }
-
-  if (isCycling) {
-    setInterval(() => { Cycle() }, interval)
-  } else {
-    Playground();
-  }
+    const day = 86400000; // 24 hours in milliseconds
+    const interval = 30 * 1000;
+    
+    if (isCycling) {
+        setInterval(() => { Cycle() }, interval)
+    } else {
+        Playground();
+    }
 }
 
 function Cycle() {
-  // Cycling Code
+    // Cycling Code
 }
 
-function Playground() {
+async function Playground() {
+    // db.setRecord('odds', new Array())
+    db.logRecord('odds')
+    // db.logRecord('odds')
+    // const gameIDs = []
+    // const games = await db.getRecord('odds')
 
-    // db.list().then( (keys) => {console.log(keys)} );
-    
-    request.allSports();
-    // db.logRecord('sports');
-    // Code to assist writing
-    // db.setRecord('users', []);
-    // const user = new User('Jadedrakerider');
-    // const uset = new UserSet(3.14, 1.11, ['bet']);
-    // console.log(user);
+    // games.forEach(game => {
+    //     gameIDs.push(game.id)
+    // })
 
-    // user.set(uset);
-    // user.set(uset);
-    // console.log(user);
+    // console.log('GameIDs:', gameIDs)
 
-    // db.addUser(user);
-    // db.updateUser(0, user)
     
-    // db.logRecord('users');
-    // db.removeUser(0);
-    // db.logRecord('users');
-    // request.currentSports();
-    
-    // request.odds(sport.nba);
-    // db.list();
-    // db.logOdds(sport.nba);
-    
-    // db.logOdds(sport.nhl);
-    // db.logRecord(sports);
-    // db.logOdds(sport.nba);
-    
-    
+    // const game = await db.getObjectFromArray('odds', 'id', 'f15ea9be5a09061ab1271a8740f13ab0')
+
+    // game.bookmakers.forEach(bookmaker => {
+    //     bookmaker.markets.forEach(market => {
+    //         console.log(bookmaker.title, market.outcomes)
+    //     })
+    // })
+
 }
 
 export { Main };
