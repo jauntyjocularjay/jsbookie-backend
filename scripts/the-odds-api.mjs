@@ -1,11 +1,32 @@
 import ReplitDB from '../libs/ReplitDB/ReplitDB.mjs';
 
 const db = new ReplitDB()
-const base = 'https://api.the-odds-api.com';
-const sports = `/v4/sports?apiKey=${process.env.apiKey}`;
-const odds = `/v4/sports/:sport_key/odds/?apiKey=${process.env.apiKey}`;
-const markets = `&markets=us`;
-const regions = `&regions=us`;
+const anon = () => {}
+const url = {
+    base: 'https://api.the-odds-api.com', // required
+    regions: {
+        us: '&regions=us',
+        us2: '&regions=us2',
+        uk: '&regions=uk',
+        au: '&regions=au',
+        eu: '&regions=eu',
+        all: '&regions=us,us2,uk,au,eu'
+    }, // required
+    markets: {
+        /** 
+        @note
+            As of 9/20/2023, some markets are only available for the US
+        */
+        h2h: '&markets=h2h', // this is the default, it is here merely for completeness
+        spreads: '&markets=spreads', // US Only
+        totals: '&markets=totals', // US only
+        outrights: '&markets=outrights',
+        notOutrights: '&markets=h2h,spreads,totals', // US Only
+        all: '&markets=h2h,spreads,totals,outrights'
+    },
+    sports: `https://api.the-odds-api.com/v4/sports?apiKey=${process.env.apiKey}`,
+    oddsBySport: `https://api.the-odds-api.com/v4/sports/:sport_key/odds/?apiKey=${process.env.apiKey}`
+}
 
 const abbr_sports = [
     {
@@ -261,7 +282,7 @@ const abbr_sports = [
 ]
 
 export async function getSports(){
-    return await fetch(base+sports+markets)
+    return await fetch(url.sports + url.markets.us)
         .then(response => response.json())
         .then(data => {
             const updated_sports = abbrSports(data)
@@ -289,11 +310,10 @@ function abbrSports(incoming_sports){
 export async function getOdds(){
     const sports = await db.getRecord('sports')
 
-    sports.forEach(sport => {
-        if(sport.active === true){
-            getSportOdds(sport.abbr)
-        } else {
-            removeSpportOdds(sport.abbr)
+    sports.forEach(async (sport) => {
+        if(sport.active){
+            await getOddsByKey(sport.key)
+            setTimeout(()=>{}, 1000)
         }
         
     })
@@ -301,21 +321,52 @@ export async function getOdds(){
 
 }
 
-export async function getOddsByAbbr(sport_abbr){
-    const sport = await db.getObjectFromArray('sports', 'abbr', sport_abbr)
-    let url = odds.concat('')
-    url.replace(':sport_key', sport.key)
+export async function getOddsByKey(sportKey){
+    let odds = await db.getRecord('odds')
+    let oddsBySport = url.oddsBySport + url.regions.us;
+    oddsBySport = spliceString(oddsBySport, ':sport_key', sportKey)
+    db.identifier = sportKey;
 
-    fetch(base+url+regions)
+    fetch(oddsBySport)
         .then( data => data.json())
         .then( games => {
-            const odds = db.getRecord('odds')
-            games.forEach( game => {
-                odds.push(game)
+            console.log('upcoming games:', games );
+            games.forEach(game => {
+                let found = false;
+                odds[db.identifier].forEach(storedGame => {
+                    if(storedGame.id === game.id){
+                        storedGame = game;
+                        found = true;
+                    } else {
+                        found = false;
+                    }
+                })
+                if(!found){
+                    odds[db.identifier].push(game);
+                }
             })
-            db.setRecord('odds', odds)
         })
+
+
+    
 }
+
+export async function getOddsByAbbr(sport_abbr){
+    /** 
+    @todo
+        Currently a stub
+    */
+}
+
+function spliceString(stringWithPlaceholder, placeholder, replacement){
+    const indexOf = stringWithPlaceholder.indexOf(placeholder)
+    const indexEnd = indexOf + placeholder.length
+    const str1 = stringWithPlaceholder.slice(0,indexOf);
+    const str2 = replacement;
+    const str3 = stringWithPlaceholder.slice(indexEnd, stringWithPlaceholder.length)
+    return str1 + str2 + str3;
+}
+
 
 /*
 export async function getOdds(abbr_sport){

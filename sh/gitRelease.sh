@@ -1,18 +1,16 @@
 #!/bin/bash
+# This should be run only after verifying the branch passes its unit tests.
 
-git commit . -m "Release Merge"
-git push
 
-git checkout Dev
-git merge ReplitBranch -m "Release Merge"
+git commit . -m "Releasing changes"
 git push
 
 git checkout main
-git merge Dev -m "Release Merge"
+git merge dev -m "Releasing changes"
 git push
 
-git checkout Release
-git merge main -m "Release Merge"
+git checkout release
+git merge main -m "Releasing changes"
 git push
 
-git checkout ReplitBranch
+git checkout dev

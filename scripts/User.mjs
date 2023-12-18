@@ -24,7 +24,7 @@ export class User {
     *       bets: [bets]
     *   }
     */
-    set( userSet ){
+    addUserSet( userSet ){
         if(this.name == userSet.name){
             this.balance.deposits += userSet.deposits;
             this.balance.winnings += userSet.winnings;
@@ -44,11 +44,15 @@ export class User {
 }
 
 export class UserSet {
-    constructor( deposits, winnings, bets ){
+    /** 
+     @summary
+        This is a helper-class used for setting up users.
+     */
+    constructor( deposits, winnings, bet_id_array ){
         this.deposits = deposits;
         this.winnings = winnings;
-        if (typeof bets == 'array'){
-            this.bets = bets;
+        if (typeof bets === 'array'){
+            this.bet_id.push(bets_id_array);
         } else {
             throw new Error('Invalid Argument Exception:\n' + 
                             'bets is not an array')
@@ -65,8 +69,8 @@ export class Bet {
         this.eventDate = '';
     }
 
-    odds(){
-    
+    getOdds(){
+        return this.odds;
     }
 
 
