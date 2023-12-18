@@ -3,9 +3,11 @@
 /.upm
 /node_modules
 /legacy
+/libs/ReplDB
 /sh
 
 .replit
+.gitmodules
 .breakpoints
 .gitignore
 package-lock.json
