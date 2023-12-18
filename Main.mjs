@@ -2,7 +2,7 @@
 // Imports
 import { getSports, getOdds } from './scripts/the-odds-api.mjs';
 import { User, UserSet, Bet } from './scripts/User.mjs';
-import ReplitDB from './libs/ReplitDB/ReplitDB.mjs'
+import ReplitDB from './libs/ReplitDB/ReplDB.mjs'
 
 const db = new ReplitDB()
 
