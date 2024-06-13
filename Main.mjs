@@ -5,6 +5,7 @@ import { User, UserSet, Bet } from './scripts/User.mjs';
 import ReplitDB from './libs/ReplitDB/ReplDB.mjs'
 
 const db = new ReplitDB()
+const isCycling = false;
 
 function Main(isCycling) {
     const day = 86400000; // 24 hours in milliseconds
